@@ -288,10 +288,22 @@ export default function Home() {
                   </motion.div>
                 )}
               </div>
-              <button className="text-white/70 hover:text-white transition-colors text-sm px-4 py-2">
+              {/* Connect Wallet Button */}
+              <button className={`transition-colors text-sm px-4 py-2 rounded-lg flex items-center gap-2 ${
+                theme === 'light' || theme === 'multi-color'
+                  ? 'text-gray-700/70 hover:text-gray-900 hover:bg-gray-100'
+                  : 'text-white/70 hover:text-white hover:bg-white/5'
+              }`}>
+                <Wallet className="w-4 h-4" /> Connect Wallet
+              </button>
+              <button className={`transition-colors text-sm px-4 py-2 ${
+                theme === 'light' || theme === 'multi-color'
+                  ? 'text-gray-700/70 hover:text-gray-900'
+                  : 'text-white/70 hover:text-white'
+              }`}>
                 Sign In
               </button>
-              <button className="bg-gradient-to-r from-[#4F8CFF] to-[#8B5CF6] px-5 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">
+              <button className="bg-gradient-to-r from-[#4F8CFF] to-[#8B5CF6] px-5 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition-opacity text-white">
                 Get Started
               </button>
             </div>
