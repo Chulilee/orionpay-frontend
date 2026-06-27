@@ -262,7 +262,7 @@ export default function Home() {
                       onClick={() => { setTheme('light'); setThemeDropdownOpen(false); }}
                       className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors ${
                         theme === 'light' ? 'text-[#4F8CFF]' : 
-                        (theme === 'light' || theme === 'multi-color' ? 'text-gray-700/70 hover:text-gray-900 hover:bg-gray-50' : 'text-white/70 hover:text-white hover:bg-white/5')
+                        'text-gray-700/70 hover:text-gray-900 hover:bg-gray-50 dark:text-white/70 dark:hover:text-white dark:hover:bg-white/5'
                       }`}
                     >
                       <Sun className="w-4 h-4" /> Light Mode
@@ -271,7 +271,7 @@ export default function Home() {
                       onClick={() => { setTheme('dark'); setThemeDropdownOpen(false); }}
                       className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors ${
                         theme === 'dark' ? 'text-[#4F8CFF]' : 
-                        (theme === 'light' || theme === 'multi-color' ? 'text-gray-700/70 hover:text-gray-900 hover:bg-gray-50' : 'text-white/70 hover:text-white hover:bg-white/5')
+                        'text-gray-700/70 hover:text-gray-900 hover:bg-gray-50 dark:text-white/70 dark:hover:text-white dark:hover:bg-white/5'
                       }`}
                     >
                       <Moon className="w-4 h-4" /> Dark Mode
@@ -280,7 +280,7 @@ export default function Home() {
                       onClick={() => { setTheme('multi-color'); setThemeDropdownOpen(false); }}
                       className={`w-full flex items-center gap-3 px-4 py-3 text-sm transition-colors ${
                         theme === 'multi-color' ? 'text-[#4F8CFF]' : 
-                        (theme === 'light' || theme === 'multi-color' ? 'text-gray-700/70 hover:text-gray-900 hover:bg-gray-50' : 'text-white/70 hover:text-white hover:bg-white/5')
+                        'text-gray-700/70 hover:text-gray-900 hover:bg-gray-50 dark:text-white/70 dark:hover:text-white dark:hover:bg-white/5'
                       }`}
                     >
                       <Palette className="w-4 h-4" /> Multi-Color
