@@ -105,7 +105,8 @@ function FeatureCard({ icon: Icon, title, description, delay = 0 }: { icon: any;
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [themeDropdownOpen, setThemeDropdownOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [customizerOpen, setCustomizerOpen] = useState(false);
+  const { theme, setTheme, customColors, updateCustomColors, resetCustomColors } = useTheme();
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, -150]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
@@ -285,9 +286,141 @@ export default function Home() {
                     >
                       <Palette className="w-4 h-4" /> Multi-Color
                     </button>
+                    {theme === 'multi-color' && (
+                      <button
+                        onClick={() => { setCustomizerOpen(!customizerOpen); setThemeDropdownOpen(false); }}
+                        className="w-full flex items-center gap-3 px-4 py-3 text-sm border-t border-gray-200 dark:border-white/10 transition-colors text-[#4F8CFF] hover:bg-gray-50 dark:hover:bg-white/5"
+                      >
+                        <Palette className="w-4 h-4" /> Customize Colors
+                      </button>
+                    )}
                   </motion.div>
                 )}
               </div>
+              
+              {/* Custom Color Picker Panel */}
+              {customizerOpen && theme === 'multi-color' && (
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="fixed top-20 right-4 w-80 bg-white dark:bg-[#0F172A] border border-gray-200 dark:border-white/10 rounded-2xl shadow-2xl p-6 z-50"
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Customize Colors</h3>
+                    <button 
+                      onClick={() => setCustomizerOpen(false)}
+                      className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 text-gray-500 dark:text-white/70"
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
+                  </div>
+                  
+                  <div className="space-y-5">
+                    {/* Primary Color */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-white/80 mb-2">Primary Color</label>
+                      <div className="flex items-center gap-3">
+                        <input 
+                          type="color" 
+                          value={customColors.primary}
+                          onChange={(e) => updateCustomColors({ primary: e.target.value })}
+                          className="w-12 h-10 rounded-lg cursor-pointer border-0"
+                        />
+                        <input 
+                          type="text" 
+                          value={customColors.primary}
+                          onChange={(e) => updateCustomColors({ primary: e.target.value })}
+                          className="flex-1 px-3 py-2 text-sm bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white"
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Secondary Color */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-white/80 mb-2">Secondary Color</label>
+                      <div className="flex items-center gap-3">
+                        <input 
+                          type="color" 
+                          value={customColors.secondary}
+                          onChange={(e) => updateCustomColors({ secondary: e.target.value })}
+                          className="w-12 h-10 rounded-lg cursor-pointer border-0"
+                        />
+                        <input 
+                          type="text" 
+                          value={customColors.secondary}
+                          onChange={(e) => updateCustomColors({ secondary: e.target.value })}
+                          className="flex-1 px-3 py-2 text-sm bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white"
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Accent Color */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-white/80 mb-2">Accent Color</label>
+                      <div className="flex items-center gap-3">
+                        <input 
+                          type="color" 
+                          value={customColors.accent}
+                          onChange={(e) => updateCustomColors({ accent: e.target.value })}
+                          className="w-12 h-10 rounded-lg cursor-pointer border-0"
+                        />
+                        <input 
+                          type="text" 
+                          value={customColors.accent}
+                          onChange={(e) => updateCustomColors({ accent: e.target.value })}
+                          className="flex-1 px-3 py-2 text-sm bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white"
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Background Color */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-white/80 mb-2">Background Color</label>
+                      <div className="flex items-center gap-3">
+                        <input 
+                          type="color" 
+                          value={customColors.background}
+                          onChange={(e) => updateCustomColors({ background: e.target.value })}
+                          className="w-12 h-10 rounded-lg cursor-pointer border-0"
+                        />
+                        <input 
+                          type="text" 
+                          value={customColors.background}
+                          onChange={(e) => updateCustomColors({ background: e.target.value })}
+                          className="flex-1 px-3 py-2 text-sm bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white"
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Text Color */}
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-white/80 mb-2">Text Color</label>
+                      <div className="flex items-center gap-3">
+                        <input 
+                          type="color" 
+                          value={customColors.text}
+                          onChange={(e) => updateCustomColors({ text: e.target.value })}
+                          className="w-12 h-10 rounded-lg cursor-pointer border-0"
+                        />
+                        <input 
+                          type="text" 
+                          value={customColors.text}
+                          onChange={(e) => updateCustomColors({ text: e.target.value })}
+                          className="flex-1 px-3 py-2 text-sm bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-lg text-gray-900 dark:text-white"
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Reset Button */}
+                    <button
+                      onClick={resetCustomColors}
+                      className="w-full mt-4 py-3 px-4 bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 rounded-xl text-sm font-medium text-gray-700 dark:text-white transition-colors"
+                    >
+                      Reset to Defaults
+                    </button>
+                  </div>
+                </motion.div>
+              )}
               {/* Connect Wallet Button */}
               <button className={`transition-colors text-sm px-4 py-2 rounded-lg flex items-center gap-2 ${
                 theme === 'light' || theme === 'multi-color'

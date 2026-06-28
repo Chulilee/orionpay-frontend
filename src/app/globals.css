@@ -31,10 +31,10 @@
 
 /* Multi-color theme */
 .multi-color {
-  --foreground-rgb: 31, 41, 55;
-  --background-start-rgb: 249, 250, 251;
-  --background-end-rgb: 243, 244, 246;
-  --toast-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --foreground-rgb: var(--custom-text-rgb, 31, 41, 55);
+  --background-start-rgb: var(--custom-background-start-rgb, 249, 250, 251);
+  --background-end-rgb: var(--custom-background-end-rgb, 243, 244, 246);
+  --toast-bg: linear-gradient(135deg, var(--custom-primary, #667eea) 0%, var(--custom-secondary, #764ba2) 100%);
   --toast-text: #ffffff;
   --toast-success: #10b981;
   --toast-error: #ef4444;
